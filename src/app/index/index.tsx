@@ -1,4 +1,4 @@
-import { View, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Modal } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { styles } from "@/app/index/style";
@@ -20,6 +20,27 @@ export default function Index() {
 
       <Categories />
       <Links />
+
+      <Modal transparent visible={false}>
+        <View style={styles.modal}>
+          <View style={styles.modalContent}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalCategory}>Curso</Text>
+              <TouchableOpacity activeOpacity={0.6}>
+                <MaterialIcons
+                  name="close"
+                  size={15}
+                  color={colors.gray[400]}
+                />
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.modalLinkName}>React Native Avançado</Text>
+            <Text style={styles.modalLinkUrl}>
+              https://www.udemy.com/course/react-native-avancado/
+            </Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }

@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     gap: 5,
   },
   name: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "bold",
   },
 });
