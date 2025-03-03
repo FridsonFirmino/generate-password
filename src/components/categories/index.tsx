@@ -9,7 +9,11 @@ export function Categories() {
       data={categories}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <Category name={item.name} icon={item.icon} isSelected={false} />
+        <Category
+          name={item.name}
+          icon={item.icon}
+          isSelected={item.isSelected}
+        />
       )}
       horizontal
       style={styles.container}

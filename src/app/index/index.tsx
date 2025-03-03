@@ -4,6 +4,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "@/app/index/style";
 import { colors } from "@/styles/colors";
 
+import { Link } from "@/components/links";
 import { Categories } from "@/components/categories";
 
 export default function Index() {
@@ -17,8 +18,14 @@ export default function Index() {
         </TouchableOpacity>
       </View>
 
-      {/* Categories */}
       <Categories />
+      <Link
+        name="Youtube"
+        url="https://www.youtube.com/"
+        onDetails={() => {
+          console.log("clicouu");
+        }}
+      />
     </View>
   );
 }
