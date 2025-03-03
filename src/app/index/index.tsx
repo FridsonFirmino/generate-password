@@ -4,8 +4,9 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "@/app/index/style";
 import { colors } from "@/styles/colors";
 
-import { Categories } from "@/components/categories";
 import { Links } from "@/components/links";
+import { Option } from "@/components/option";
+import { Categories } from "@/components/categories";
 
 export default function Index() {
   return (
@@ -21,7 +22,7 @@ export default function Index() {
       <Categories />
       <Links />
 
-      <Modal transparent visible={false}>
+      <Modal transparent visible={true}>
         <View style={styles.modal}>
           <View style={styles.modalContent}>
             <View style={styles.modalHeader}>
@@ -38,6 +39,16 @@ export default function Index() {
             <Text style={styles.modalLinkUrl}>
               https://www.udemy.com/course/react-native-avancado/
             </Text>
+
+            <View style={styles.modalFooter}>
+              <Option
+                name="Excluir"
+                icon="delete"
+                variant="secondary"
+                onPress={() => {}}
+              />
+              <Option name="Abrir" icon="language" onPress={() => {}} />
+            </View>
           </View>
         </View>
       </Modal>
