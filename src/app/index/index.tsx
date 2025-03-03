@@ -3,6 +3,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import { styles } from "@/app/index/style";
 import { colors } from "@/styles/colors";
+import { categories } from "@/utils/categories";
 
 import { Category } from "@/components/category";
 
