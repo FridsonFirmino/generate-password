@@ -9,9 +9,9 @@ type Category = {
 
 export const categories: Category[] = [
   { id: "1", name: "Curso", icon: "code", isSelected: false },
-  { id: "2", name: "Site", icon: "language", isSelected: false },
+  { id: "2", name: "Site", icon: "language", isSelected: true },
   { id: "3", name: "Projecto", icon: "folder", isSelected: false },
-  { id: "4", name: "Artigo", icon: "newspaper", isSelected: true },
+  { id: "4", name: "Artigo", icon: "newspaper", isSelected: false },
   { id: "5", name: "Video", icon: "movie", isSelected: false },
   { id: "6", name: "Documentação", icon: "content-paste", isSelected: false },
 ];

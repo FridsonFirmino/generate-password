@@ -1,29 +1,19 @@
-import { View, Text, TouchableOpacity } from "react-native";
-
-import { MaterialIcons } from "@expo/vector-icons";
+import { FlatList } from "react-native";
 
 import { styles } from "./style";
-import { colors } from "@/styles/colors";
-
-type linksProps = {
-  name: string;
-  url: string;
-  onDetails: () => void;
-};
-export function Link({ name, url, onDetails }: linksProps) {
+import { Link } from "@/components/link";
+import { links } from "@/utils/links";
+export function Links() {
   return (
-    <View style={styles.container}>
-      <View style={styles.details}>
-        <Text style={styles.name} numberOfLines={1}>
-          {name}
-        </Text>
-        <Text style={styles.url} numberOfLines={1}>
-          {url}
-        </Text>
-      </View>
-      <TouchableOpacity activeOpacity={0.6} onPress={onDetails}>
-        <MaterialIcons name="more-horiz" size={20} color={colors.gray[400]} />
-      </TouchableOpacity>
-    </View>
+    <FlatList
+      data={links}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => (
+        <Link name={item.name} onDetails={() => {}} url={item.url} />
+      )}
+      style={styles.container}
+      contentContainerStyle={styles.content}
+      showsHorizontalScrollIndicator={true}
+    />
   );
 }

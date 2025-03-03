@@ -4,8 +4,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "@/app/index/style";
 import { colors } from "@/styles/colors";
 
-import { Link } from "@/components/links";
 import { Categories } from "@/components/categories";
+import { Links } from "@/components/links";
 
 export default function Index() {
   return (
@@ -19,13 +19,7 @@ export default function Index() {
       </View>
 
       <Categories />
-      <Link
-        name="Youtube"
-        url="https://www.youtube.com/"
-        onDetails={() => {
-          console.log("clicouu");
-        }}
-      />
+      <Links />
     </View>
   );
 }
