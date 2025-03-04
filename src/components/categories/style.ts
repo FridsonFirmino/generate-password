@@ -6,8 +6,6 @@ export const styles = StyleSheet.create({
     height: 52,
     maxHeight: 52,
     marginBottom: 15,
-    borderBottomWidth: 1,
-    borderColor: colors.gray[600],
   },
   content: {
     paddingHorizontal: 24,
