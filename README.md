@@ -34,13 +34,13 @@ Além disto é bom ter um editor para trabalhar com o código como [Vscode](http
 Clone o projeto
 
 ```bash
-  git clone https://github.com/FridsonFirmino/intro-course-to-react-native.git
+  git clone https://github.com/FridsonFirmino/links-app.git
 ```
 
 Entre no diretório do projeto
 
 ```bash
-  cd devFinder-Mobile
+  cd links-app
 ```
 
 Instale as dependências
@@ -54,6 +54,10 @@ Inicie o servidor
 ```bash
   npm start
 ```
+ou
+```bash
+  npx expo start
+```
 
 
 ## Tecnologias
@@ -61,20 +65,12 @@ Inicie o servidor
 **#Mobile** ([React Native](https://reactnative.dev/) +  [Typecript](https://www.typescriptlang.org/))
 
  - [Expo](https://docs.expo.dev/)
- - [Expo Google Fonts](https://www.npmjs.com/package/@expo-google-fonts/space-mono)
- - [Expo Fonts](https://docs.expo.dev/versions/latest/sdk/font/)
  - [Expo Vector Icons](https://icons.expo.fyi/Index)
- - [Axios](https://axios-http.com/)
- - [Styled-Components](https://styled-components.com/)
- - [React Native Keyboard Scroll View](https://www.npmjs.com/package/react-native-keyboard-aware-scroll-view)
- - [React Native Toast Message](https://www.npmjs.com/package/react-native-toast-message)
-
-**#Utilitarios**
-
- - **GITHUB API:** 'https://api.github.com/users/{USERNAME}'
-
-
- 
+ - [Async Storage](https://docs.expo.dev/versions/latest/sdk/async-storage/)
+ - [Expo-Router](https://docs.expo.dev/router/introduction/)
+ - [Typescript](https://www.typescriptlang.org/)
+ - [Typescript](https://www.typescriptlang.org/)
+ - [Stylesheet](https://reactnative.dev/docs/stylesheet)
 
  
 ## Autor
