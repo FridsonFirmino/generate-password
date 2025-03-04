@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { router } from "expo-router";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -11,12 +11,19 @@ import { Categories } from "@/components/categories";
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";
 export default function Add() {
-  const [category, setCategory] = useState("Curso");
+  const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
 
   const handleAdd = () => {
-    console.log({ name, url });
+    if (!category) {
+      return Alert.alert("Categoria", "Seleccione a Categoria");
+    }
+
+    if (!name.trim() || !url.trim()) {
+      return Alert.alert("Aviso", "Preencha todos os campos");
+    }
+    console.log({ name, url, category });
   };
   return (
     <View style={styles.container}>
