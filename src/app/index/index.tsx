@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { router } from "expo-router";
-import { View, Text, Image, TouchableOpacity, Modal } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Modal,
+  Alert,
+} from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { styles } from "@/app/index/style";
 import { colors } from "@/styles/colors";
+
+import { linkStorage, LinkStorageProps } from "@/storage/link-storage";
 
 import { Links } from "@/components/links";
 import { Option } from "@/components/option";
@@ -13,6 +22,22 @@ import { categories } from "@/utils/categories";
 
 export default function Index() {
   const [category, setCategory] = useState(categories[0].name);
+  const [links, setLinks] = useState<LinkStorageProps[]>([]);
+
+  const getLinks = async () => {
+    try {
+      const links = await linkStorage.get();
+      const newLinks = links.filter((link) => link.category === category);
+      setLinks(newLinks);
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possivel listar os links");
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    getLinks();
+  }, [category]);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -28,7 +53,7 @@ export default function Index() {
       </View>
 
       <Categories onCategorySelect={setCategory} selected={category} />
-      <Links />
+      <Links data={links} />
 
       <Modal transparent visible={false}>
         <View style={styles.modal}>

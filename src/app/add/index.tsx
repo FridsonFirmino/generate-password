@@ -7,6 +7,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./style";
 import { colors } from "@/styles/colors";
 
+import { linkStorage } from "@/storage/link-storage";
+
 import { Categories } from "@/components/categories";
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";
@@ -15,16 +17,27 @@ export default function Add() {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
 
-  const handleAdd = () => {
-    if (!category) {
-      return Alert.alert("Categoria", "Seleccione a Categoria");
-    }
+  const handleAdd = async () => {
+    try {
+      if (!category) {
+        return Alert.alert("Categoria", "Seleccione a Categoria");
+      }
 
-    if (!name.trim() || !url.trim()) {
-      return Alert.alert("Aviso", "Preencha todos os campos");
+      if (!name.trim() || !url.trim()) {
+        return Alert.alert("Aviso", "Preencha todos os campos");
+      }
+      await linkStorage.save({
+        id: new Date().getTime().toString(),
+        name,
+        url,
+        category,
+      });
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possivel salvar o Link");
+      console.error(error);
     }
-    console.log({ name, url, category });
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
