@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Linking } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -17,13 +17,7 @@ export function Link({ name, url, onDetails }: linksProps) {
         <Text style={styles.name} numberOfLines={1}>
           {name}
         </Text>
-        <Text
-          style={styles.url}
-          onPress={() => {
-            Linking.openURL(url);
-          }}
-          numberOfLines={1}
-        >
+        <Text style={styles.url} numberOfLines={1}>
           {url}
         </Text>
       </View>

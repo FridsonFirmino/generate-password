@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Modal,
   Alert,
+  Linking,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -21,8 +22,10 @@ import { Categories } from "@/components/categories";
 import { categories } from "@/utils/categories";
 
 export default function Index() {
-  const [category, setCategory] = useState(categories[0].name);
+  const [showModal, setShowModal] = useState(false);
   const [links, setLinks] = useState<LinkStorageProps[]>([]);
+  const [category, setCategory] = useState(categories[0].name);
+  const [link, setLink] = useState<LinkStorageProps>({} as LinkStorageProps);
 
   const getLinks = async () => {
     try {
@@ -35,6 +38,34 @@ export default function Index() {
     }
   };
 
+  const handleDetails = (selected: LinkStorageProps) => {
+    setLink(selected);
+    setShowModal(true);
+  };
+
+  const handleDelete = async () => {
+    try {
+      Alert.alert("Aviso", "Deseja realmente excluir", [
+        {
+          text: "Não",
+          style: "cancel",
+        },
+        {
+          text: "Sim",
+          onPress: async () => {
+            await linkStorage.deleteById(link.id);
+            getLinks();
+            setShowModal(false);
+          },
+        },
+      ]);
+
+      getLinks();
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possivel excluir o link");
+      console.error(error);
+    }
+  };
   useFocusEffect(
     useCallback(() => {
       getLinks();
@@ -56,14 +87,17 @@ export default function Index() {
       </View>
 
       <Categories onCategorySelect={setCategory} selected={category} />
-      <Links data={links} />
+      <Links data={links} openModal={handleDetails} />
 
-      <Modal transparent visible={false}>
+      <Modal transparent visible={showModal} animationType="slide">
         <View style={styles.modal}>
           <View style={styles.modalContent}>
             <View style={styles.modalHeader}>
-              <Text style={styles.modalCategory}>Site</Text>
-              <TouchableOpacity activeOpacity={0.6}>
+              <Text style={styles.modalCategory}>{link.category}</Text>
+              <TouchableOpacity
+                activeOpacity={0.6}
+                onPress={() => setShowModal(false)}
+              >
                 <MaterialIcons
                   name="close"
                   size={15}
@@ -71,17 +105,21 @@ export default function Index() {
                 />
               </TouchableOpacity>
             </View>
-            <Text style={styles.modalLinkName}>Youtube</Text>
-            <Text style={styles.modalLinkUrl}>https://www.youtube.com/</Text>
+            <Text style={styles.modalLinkName}>{link.name}</Text>
+            <Text style={styles.modalLinkUrl}>{link.url}</Text>
 
             <View style={styles.modalFooter}>
               <Option
                 name="Excluir"
                 icon="delete"
                 variant="secondary"
-                onPress={() => {}}
+                onPress={handleDelete}
               />
-              <Option name="Abrir" icon="language" onPress={() => {}} />
+              <Option
+                name="Abrir"
+                icon="language"
+                onPress={() => Linking.openURL(link.url)}
+              />
             </View>
           </View>
         </View>

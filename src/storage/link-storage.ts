@@ -26,7 +26,16 @@ async function save(newLink: LinkStorageProps) {
     const links = await get();
     const updatedLinks = [...links, newLink];
     await AsyncStorage.setItem(LINKS_STORAGE_KEY, JSON.stringify(updatedLinks));
-    return updatedLinks;
+  } catch (error) {
+    throw Error;
+  }
+}
+
+async function deleteById(id: string) {
+  try {
+    const links = await get();
+    const updatedLinks = links.filter((link) => link.id !== id);
+    await AsyncStorage.setItem(LINKS_STORAGE_KEY, JSON.stringify(updatedLinks));
   } catch (error) {
     throw Error;
   }
@@ -35,4 +44,5 @@ async function save(newLink: LinkStorageProps) {
 export const linkStorage = {
   get,
   save,
+  deleteById,
 };
