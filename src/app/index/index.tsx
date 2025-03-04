@@ -66,6 +66,17 @@ export default function Index() {
       console.error(error);
     }
   };
+
+  const handleOpenLink = async () => {
+    try {
+      await Linking.openURL(link.url);
+      setShowModal(false);
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possivel abrir o link");
+      console.error(error);
+    }
+  };
+
   useFocusEffect(
     useCallback(() => {
       getLinks();
@@ -115,11 +126,7 @@ export default function Index() {
                 variant="secondary"
                 onPress={handleDelete}
               />
-              <Option
-                name="Abrir"
-                icon="language"
-                onPress={() => Linking.openURL(link.url)}
-              />
+              <Option name="Abrir" icon="language" onPress={handleOpenLink} />
             </View>
           </View>
         </View>
