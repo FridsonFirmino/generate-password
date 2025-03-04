@@ -8,7 +8,14 @@ import { colors } from "@/styles/colors";
 import { Categories } from "@/components/categories";
 import { Input } from "@/components/input";
 import Button from "@/components/button";
+import { useState } from "react";
 export default function Add() {
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
+
+  const handleAdd = () => {
+    console.log({ name, url });
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -22,9 +29,13 @@ export default function Add() {
       <Categories />
 
       <View style={styles.form}>
-        <Input placeholder="Nome" />
-        <Input placeholder="Url" />
-        <Button title="Adicionar" />
+        <Input placeholder="Nome" onChangeText={(e) => setName(e)} />
+        <Input
+          placeholder="Url"
+          onChangeText={(e) => setUrl(e)}
+          autoCapitalize="none"
+        />
+        <Button title="Adicionar" onPress={handleAdd} />
       </View>
     </View>
   );
