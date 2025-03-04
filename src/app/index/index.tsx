@@ -26,7 +26,7 @@ export default function Index() {
         <View style={styles.modal}>
           <View style={styles.modalContent}>
             <View style={styles.modalHeader}>
-              <Text style={styles.modalCategory}>Curso</Text>
+              <Text style={styles.modalCategory}>Site</Text>
               <TouchableOpacity activeOpacity={0.6}>
                 <MaterialIcons
                   name="close"
@@ -35,10 +35,8 @@ export default function Index() {
                 />
               </TouchableOpacity>
             </View>
-            <Text style={styles.modalLinkName}>React Native Avançado</Text>
-            <Text style={styles.modalLinkUrl}>
-              https://www.udemy.com/course/react-native-avancado/
-            </Text>
+            <Text style={styles.modalLinkName}>Youtube</Text>
+            <Text style={styles.modalLinkUrl}>https://www.youtube.com/</Text>
 
             <View style={styles.modalFooter}>
               <Option
