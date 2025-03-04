@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { router } from "expo-router";
+import { useCallback, useState } from "react";
+import { router, useFocusEffect } from "expo-router";
 import {
   View,
   Text,
@@ -34,9 +34,12 @@ export default function Index() {
       console.error(error);
     }
   };
-  useEffect(() => {
-    getLinks();
-  }, [category]);
+
+  useFocusEffect(
+    useCallback(() => {
+      getLinks();
+    }, [category])
+  );
 
   return (
     <View style={styles.container}>
