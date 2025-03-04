@@ -20,11 +20,15 @@ export default function Add() {
   const handleAdd = async () => {
     try {
       if (!category) {
-        return Alert.alert("Categoria", "Seleccione a Categoria");
+        return Alert.alert("Aviso⚠️", "Seleccione a Categoria");
       }
 
-      if (!name.trim() || !url.trim()) {
-        return Alert.alert("Aviso", "Preencha todos os campos");
+      if (!name.trim()) {
+        return Alert.alert("Aviso⚠️", "Informe o nome");
+      }
+
+      if (!url.trim()) {
+        return Alert.alert("Aviso⚠️", "Informe a URL");
       }
       await linkStorage.save({
         id: new Date().getTime().toString(),
@@ -32,8 +36,14 @@ export default function Add() {
         url,
         category,
       });
+      Alert.alert("Sucesso✅", "Novo Link adicionado 🥳", [
+        {
+          text: "OK",
+          onPress: () => router.back(),
+        },
+      ]);
     } catch (error) {
-      Alert.alert("Erro", "Não foi possivel salvar o Link");
+      Alert.alert("Erro🚨", "Não foi possivel salvar o Link");
       console.error(error);
     }
   };
