@@ -21,8 +21,12 @@ export const styles = StyleSheet.create({
     fontWeight: "600",
   },
   label: {
-    color: colors.gray[400],
+    color: colors.gray[200],
     fontSize: 14,
     paddingHorizontal: 24,
+  },
+  form: {
+    padding: 24,
+    gap: 16,
   },
 });
